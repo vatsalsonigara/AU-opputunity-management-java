@@ -2,12 +2,18 @@ package com.example.demo;
 
 public class Opportunity {
 	
-	private String oppName,manager,oppCreator,oppEmail,skills;
+	private String oppName,manager,oppCreator,oppEmail,skills,location;
 	private int expInYrs;
 	private long id;
 	private String lastUpdated;
 	
 	
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 	public long getId() {
 		return id;
 	}

@@ -10,7 +10,7 @@ public class AuOpportunityManagementApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AuOpportunityManagementApplication.class, args);
-		JdbcTemplate template;
+		//JdbcTemplate template;
 	}
 
 }

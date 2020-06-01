@@ -12,6 +12,7 @@ import org.aspectj.weaver.bcel.AtAjAttributes;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @org.springframework.web.bind.annotation.RestController
+
 public class RestController {
 	private static final String driverClassName = "com.mysql.jdbc.Driver";
     private static final String url = "jdbc:mysql://localhost/AU";
@@ -35,33 +37,38 @@ public class RestController {
     }
 	JdbcTemplate template = new JdbcTemplate(getDataSource());
 
-//	@GetMapping("/get-all-records")
-//	public String getAllRecords(){
-//		
-//	}
+	@GetMapping("/get-all-opp")
+	@CrossOrigin
+	public List<Opportunity> getAllRecords(){
+		String querString="Select * from opportunity;";
+		return template.query(querString, new Object[] {},new OpportunityRowMapper());
+	}
 	@PostMapping("/insert")
+	@CrossOrigin
 	public String insert(@RequestBody Opportunity op) {
 		//System.out.println(op);
-		String queryString="Insert into opportunity(opp_name,manager"+
+		String queryString="Insert into opportunity(opp_name,location,manager"+
 							",creator,creator_email,experience,skills,last_updated)"
-							+ "values(?,?,?,?,?,?,?);";
+							+ "values(?,?,?,?,?,?,?,?);";
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
 		//System.out.println(dateFormat.format(date));
-		template.update(queryString,op.getOppName(),op.getManager(),op.getOppCreator(),op.getOppEmail(),op.getExpInYrs(),op.getSkills(),dateFormat.format(date));
+		template.update(queryString,op.getOppName(),op.getLocation(),op.getManager(),op.getOppCreator(),op.getOppEmail(),op.getExpInYrs(),op.getSkills(),dateFormat.format(date));
 		return "Success";
 	}
 	@PostMapping("/update")
+	@CrossOrigin
 	public String update(@RequestBody Opportunity op) {
 		String queryString="update opportunity set "
-				+ "opp_name=?,manager=?"+
+				+ "opp_name=?,location=?,manager=?"+
 				",creator=?,creator_email=?,experience=?,skills=?,last_updated=?"
 				+ " where id=?;";
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
 		//System.out.println(dateFormat.format(date));
-		template.update(queryString,op.
-				getOppName(),
+		template.update(queryString,
+				op.getOppName(),
+				op.getLocation(),
 				op.getManager(),
 				op.getOppCreator(),
 				op.getOppEmail(),
@@ -73,24 +80,30 @@ public class RestController {
 	}
 	
 	@GetMapping("/delete-opp/{id}")
+	@CrossOrigin
 	public String deleteRecord(@PathVariable long id) {
 		String queryString="delete from opportunity where id =?";
 		template.update(queryString,id);
 		return "Success";
 	}
 	@GetMapping("/get-opp/{id}")
+	@CrossOrigin
 	public Opportunity getRecord(@PathVariable long id) {
 		String queryString="select * from opportunity where id =?";
-		return template.queryForObject(queryString,new Object[] {id},new OpportunityRowMapper());
+		List<Opportunity> resList=template.query(queryString,new Object[] {id},new OpportunityRowMapper());
+		if(resList.isEmpty()) return null;
+		else return resList.get(0);
 	}
 	
 	@PostMapping("/add-user")
+	@CrossOrigin
 	public int addUser(@RequestBody User user) {
 		String queryString="Insert into login(name,email,password) "
 				+ "values(?,?,?);";
 		return template.update(queryString,user.getName(),user.getEmail(),user.getPassword());
 	}
 	@PostMapping("/delete-user")
+	@CrossOrigin
 	public String deleteUser(@RequestBody User user) {
 		String queryString="delete from login where email =?";
 		template.update(queryString,user.getEmail());
