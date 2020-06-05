@@ -1,9 +1,11 @@
-package com.example.demo;
+package Service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+
+import Model.Opportunity;
 
 public class OpportunityRowMapper implements RowMapper<Opportunity>{
 

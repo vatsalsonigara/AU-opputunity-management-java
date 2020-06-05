@@ -1,4 +1,4 @@
-package com.example.demo;
+package Model;
 
 public class Opportunity {
 	

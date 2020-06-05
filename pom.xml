@@ -12,7 +12,7 @@
 	<artifactId>AU-opportunity-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>AU-opportunity-management</name>
-	<description>Demo project for Spring Boot</description>
+	<description>AU project for Spring Boot</description>
 
 	<properties>
 		<java.version>11</java.version>

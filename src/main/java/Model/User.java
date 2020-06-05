@@ -1,7 +1,7 @@
-package com.example.demo;
+package Model;
 
 public class User {
-	private String name,email,password;
+	private String name,email,token;
 
 	public String getName() {
 		return name;
@@ -19,13 +19,15 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getToken() {
+		return token;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setToken(String token) {
+		this.token = token;
 	}
+
+	
 	
 	
 }
