@@ -1,5 +1,8 @@
 package com.accolite.au;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,18 +10,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-import DAO.OpportunityDao;
-import DAO.OpportunityDaoImpl;
-import DAO.UserDao;
-import DAO.UserDaoImpl;
-import Model.Opportunity;
-import Model.User;
-import Service.OpportunityRowMapper;
+import com.accolite.au.dao.OpportunityDao;
+import com.accolite.au.dao.OpportunityDaoImpl;
+import com.accolite.au.dao.UserDao;
+import com.accolite.au.dao.UserDaoImpl;
+import com.accolite.au.model.Opportunity;
+import com.accolite.au.model.User;
+import com.accolite.au.service.OpportunityRowMapper;
 
 @org.springframework.web.bind.annotation.RestController 
 public class RestController {
-	static OpportunityDao opd=new OpportunityDaoImpl();
-	static UserDao usd = new UserDaoImpl();
+	
+	@Autowired
+	private OpportunityDaoImpl opd;
+	
+	@Autowired
+	private UserDao usd;
 	@GetMapping("/get-all-opp")
 	@CrossOrigin
 	public List<Opportunity> getAllRecords(){
@@ -27,23 +34,26 @@ public class RestController {
 	}
 	@PostMapping("/insert")
 	@CrossOrigin
-	public boolean insert(@RequestBody Opportunity op) {
+	public Opportunity insert(@RequestBody Opportunity op) {
 		//System.out.println(op);
 		//if(checkAuthorization(email, token)) return null;
-		return opd.insertOpportunity(op);
+		opd.insertOpportunity(op);
+		return op;
 	}
 	@PostMapping("/update")
 	@CrossOrigin
-	public boolean update(@RequestBody Opportunity op) {
+	public Opportunity update(@RequestBody Opportunity op) {
 		//if(checkAuthorization(email, token)) return null;
-		return opd.updateOpportunity(op);
+		opd.updateOpportunity(op);
+		return op;
 	}
 	
 	@GetMapping("/delete-opp/{id}")
 	@CrossOrigin
-	public boolean deleteRecord(@PathVariable int id) {
+	public String deleteRecord(@PathVariable int id) {
 		//if(checkAuthorization(email, token)) return null;
-		return opd.deleteOpportunity(id);
+		opd.deleteOpportunity(id);
+		return "Deleted Successfully!";
 	}
 	@GetMapping("/get-opp/{id}")
 	@CrossOrigin
