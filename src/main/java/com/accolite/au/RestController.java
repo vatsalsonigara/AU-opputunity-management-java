@@ -29,23 +29,19 @@ public class RestController {
 	private UserDao usd;
 	@GetMapping("/get-all-opp")
 	
-	public List<Opportunity> getAllRecords() throws ResourceNotFoundException{
-		//if(checkAuthorization(email, token)) return
-		
+	public List<Opportunity> getAllRecords() throws ResourceNotFoundException{		
 		return opd.getAllOpportunity();
 	}
 	@PostMapping("/insert")
 	
 	public Opportunity insert(@RequestBody Opportunity op) {
-		//System.out.println(op);
-		//if(checkAuthorization(email, token)) return null;
+
 		opd.insertOpportunity(op);
 		return op;
 	}
 	@PostMapping("/update")
 	 
 	public Opportunity update(@RequestBody Opportunity op) {
-		//if(checkAuthorization(email, token)) return null;
 		opd.updateOpportunity(op);
 		return op;
 	}
@@ -53,14 +49,13 @@ public class RestController {
 	@GetMapping("/delete-opp/{id}")
 	 
 	public String deleteRecord(@PathVariable int id) {
-		//if(checkAuthorization(email, token)) return null;
+	
 		opd.deleteOpportunity(id);
 		return "Deleted Successfully!";
 	}
 	@GetMapping("/get-opp/{id}")
 	 
 	public Opportunity getRecord(@PathVariable int id) throws ResourceNotFoundException{
-		//if(checkAuthorization(email, token)) return null;
 		return opd.getOpportunity(id);
 	}
 	
@@ -72,7 +67,6 @@ public class RestController {
 	@PostMapping("/logout")
 	 
 	public void signOut(@RequestBody User user) {
-		//tokenMapper.remove(user.getEmail());
 		usd.signOut(user);
 	}
 	@PostMapping("/delete-user")
@@ -80,8 +74,5 @@ public class RestController {
 	public boolean deleteUser(@RequestBody User user) {
 		return usd.deleteUser(user);
 	}
-//   
-//	private static boolean checkAuthorization(String email,String token) {
-//		return tokenMapper.get(email).equals(token); 
-//	}
+
 }

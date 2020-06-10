@@ -7,8 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 @Component
 public class InterceptorConfig extends WebMvcConfigurationSupport{
 
-//	@Autowired
-//	RequestInterceptor rsi;
+
 	@Override
 	protected void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(new RequestInterceptor()).addPathPatterns("/**");

@@ -22,6 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.accolite.au.dao.OpportunityDaoImpl;
+import com.accolite.au.exception.ResourceNotFoundException;
 import com.accolite.au.model.Opportunity;
 import com.accolite.au.service.OpportunityRowMapper;
 import com.accolite.au.dao.*;
@@ -43,15 +44,12 @@ class OpportunityDaoImplTest {
 	
 	@Test
 	public void getAllTest() {
-		//throw new RuntimeException(template.toString());
-		//ReflectionTestUtils.setField(new OpportunityDaoImpl(),"template", template);
 		when(template.query(Mockito.anyString(),Mockito.any(Object[].class),Mockito.any(OpportunityRowMapper.class))).thenReturn(Stream
 				.of(new Opportunity("Software Eng","Suresh","Vatsal","vat@gg.com","Java","banglore",1,2,"31/05/20"),
 						new Opportunity("Software Eng","Vatsal","Vatsal","vat@gg.com","Java","banglore",1,2,"31/05/20"))
 				.collect(Collectors.toList()));
 	
 		assertEquals(2,oppDao.getAllOpportunity().size());
-		//System.out.println(rs.getAllRecords());
 	}
 	@Test
 	public void deleteOpptest() {
@@ -89,7 +87,7 @@ class OpportunityDaoImplTest {
 		assertEquals(true, oppDao.updateOpportunity(op));
 	}
 	@Test
-	public void getRecordTest() {
+	public void getRecordTest() throws ResourceNotFoundException {
 		int id =5;
 		Opportunity op = new Opportunity("Software Eng","Suresh","Vatsal","vat@gg.com","Java","banglore",1,2,"31/05/20");
 		when(template.query(Mockito.anyString(),Mockito.any(Object[].class),Mockito.any(OpportunityRowMapper.class))

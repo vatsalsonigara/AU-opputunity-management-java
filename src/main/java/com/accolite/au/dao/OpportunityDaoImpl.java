@@ -47,7 +47,6 @@ public class OpportunityDaoImpl implements OpportunityDao {
 				+ " where id=?;";
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
-		//System.out.println(dateFormat.format(date));
 		template.update(queryString,
 				op.getOppName(),
 				op.getLocation(),

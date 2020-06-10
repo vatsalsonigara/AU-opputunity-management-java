@@ -9,7 +9,6 @@ import com.accolite.au.model.Opportunity;
 public class OpportunityRowMapper implements RowMapper<Opportunity>{
 	@Override
 	public Opportunity mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
 	 return new Opportunity(rs.getString("opp_name"),rs.getString("manager"),rs.getString("creator"),rs.getString("creator_email"),rs.getString("skills"),rs.getString("location"),rs.getInt("experience"),rs.getInt("id"),rs.getString("last_updated"));
 	}
 }

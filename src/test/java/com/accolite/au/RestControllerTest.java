@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.accolite.au.dao.OpportunityDao;
 import com.accolite.au.dao.OpportunityDaoImpl;
+import com.accolite.au.exception.ResourceNotFoundException;
 import com.accolite.au.model.Opportunity;
 
 @RunWith(SpringRunner.class)
@@ -29,14 +30,13 @@ class RestControllerTest {
 	private RestController rs;
 	
 	@Test
-	public void getAllTest() {
+	public void getAllTest() throws ResourceNotFoundException {
 		when(oppDao.getAllOpportunity()).thenReturn(Stream
 				.of(new Opportunity("Software Eng","Suresh","Vatsal","vat@gg.com","Java","banglore",1,2,"31/05/20"),
 						new Opportunity("Software Eng","Vatsal","Vatsal","vat@gg.com","Java","banglore",1,2,"31/05/20"))
 				.collect(Collectors.toList()));
 	
 		assertEquals(2,rs.getAllRecords().size());
-		//System.out.println(rs.getAllRecords());
 	}
 	@Test
 	public void deleteOpptest() {

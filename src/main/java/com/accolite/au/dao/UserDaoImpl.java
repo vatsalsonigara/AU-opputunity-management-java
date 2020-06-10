@@ -24,7 +24,6 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public void signOut(User user) {
-		// TODO Auto-generated method stub
 		return;
 	}
 
