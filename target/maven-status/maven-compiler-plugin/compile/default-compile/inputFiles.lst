@@ -2,9 +2,11 @@
 /home/vatsal/eclipse-workspace/AU-opportunity-management/src/main/java/com/accolite/au/dao/OpportunityDaoImpl.java
 /home/vatsal/eclipse-workspace/AU-opportunity-management/src/main/java/com/accolite/au/AuOpportunityManagementApplication.java
 /home/vatsal/eclipse-workspace/AU-opportunity-management/src/main/java/com/accolite/au/dao/UserDaoImpl.java
+/home/vatsal/eclipse-workspace/AU-opportunity-management/src/main/java/com/accolite/au/interceptor/RequestInterceptorAppConfig.java
 /home/vatsal/eclipse-workspace/AU-opportunity-management/src/main/java/com/accolite/au/service/OpportunityRowMapper.java
 /home/vatsal/eclipse-workspace/AU-opportunity-management/src/main/java/com/accolite/au/RestController.java
 /home/vatsal/eclipse-workspace/AU-opportunity-management/src/main/java/com/accolite/au/model/Opportunity.java
 /home/vatsal/eclipse-workspace/AU-opportunity-management/src/main/java/com/accolite/au/model/User.java
 /home/vatsal/eclipse-workspace/AU-opportunity-management/src/main/java/com/accolite/au/dao/UserDao.java
 /home/vatsal/eclipse-workspace/AU-opportunity-management/src/main/java/com/accolite/au/service/UserRowMapper.java
+/home/vatsal/eclipse-workspace/AU-opportunity-management/src/main/java/com/accolite/au/interceptor/RequestInterceptor.java

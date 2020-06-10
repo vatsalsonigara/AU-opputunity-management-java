@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.accolite.au.exception.ResourceNotFoundException;
 import com.accolite.au.model.Opportunity;
 
 
@@ -13,5 +14,5 @@ public interface OpportunityDao {
 	public boolean deleteOpportunity(int id);
 	public boolean updateOpportunity(Opportunity op);
 	public boolean insertOpportunity(Opportunity op);
-	public Opportunity getOpportunity(int id);
+	public Opportunity getOpportunity(int id) throws ResourceNotFoundException;
 }

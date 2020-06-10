@@ -2,9 +2,12 @@ package com.accolite.au.model;
 
 import org.springframework.stereotype.Repository;
 
+import lombok.Getter;
+import lombok.Setter;
+
 
 public class User {
-	private String name,email,token;
+	@Getter @Setter private String name,email,token;
 
 	public String getName() {
 		return name;

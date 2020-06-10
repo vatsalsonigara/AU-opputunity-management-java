@@ -15,12 +15,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
 
+import com.accolite.au.exception.ResourceNotFoundException;
 import com.accolite.au.model.Opportunity;
 import com.accolite.au.model.User;
 import com.accolite.au.service.OpportunityRowMapper;
 
 @Repository
-public class OpportunityDaoImpl implements OpportunityDao{
+public class OpportunityDaoImpl implements OpportunityDao {
 
 	@Autowired
 	private JdbcTemplate template;
@@ -72,10 +73,10 @@ public class OpportunityDaoImpl implements OpportunityDao{
 	}
 
 	@Override
-	public Opportunity getOpportunity(int id) {
+	public Opportunity getOpportunity(int id) throws ResourceNotFoundException {
 		String queryString="select * from opportunity where id =?";
 		List<Opportunity> resList=template.query(queryString,new Object[] {id},new OpportunityRowMapper());
-		if(resList.isEmpty()) return null;
+		if(resList.isEmpty())throw new ResourceNotFoundException("Opportunity not found");
 		else return resList.get(0);
 	}
 	

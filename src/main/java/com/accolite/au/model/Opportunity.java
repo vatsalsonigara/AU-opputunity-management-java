@@ -9,7 +9,7 @@ public class Opportunity {
 	private int expInYrs;
 	private long id;
 	private String lastUpdated;
-	
+	public Opportunity() {}
 	public Opportunity(String oppName, String manager, String oppCreator, String oppEmail, String skills,
 			String location, int expInYrs, long id, String lastUpdated) {
 		super();
